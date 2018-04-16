@@ -1,0 +1,109 @@
+<button class = "btn btn-success btn-lg agregar" data-dismiss="alert" (click)="open(modalCreate); deleteData()">Agregar</button>
+
+<div class="row">
+<div class="col-md-2 mostrar" *ngFor = 'let item of lista'>
+<div class="card text-white bg-primary">
+  <div class="card-body">
+    <blockquote class="card-blockquote">
+      <p>{{item.username}}</p>
+      <button class="btn btn-info" (click)="open(modalDetails); setData(item)">Detalles</button>
+      <button class="btn btn-secondary" (click)="open(modalUpdate); setData(item)">Editar</button>
+      <button class="btn btn-danger" (click)="open(modalDelete); setData(item)">Eliminar</button>
+    </blockquote>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- modal Agregar-->
+<ng-template #modalCreate let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <label>Username</label>
+        <input [(ngModel)] = 'username' type="text" class="form-control" placeholder="Escribir Aqui">
+        <label>Email</label>
+        <input [(ngModel)] = 'email' type="text" class="form-control" placeholder="Escribir Aqui">
+        <label>Password</label>
+        <input [(ngModel)] = 'password' type="password" class="form-control" placeholder="Escribir Aqui">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click'); createUsuario(username, email, password)">Confirmar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>
+    
+<!-- modal Actualizar-->
+<ng-template #modalUpdate let-c="close" let-d="dismiss">
+    <div class="modal-header" >
+    <h4 class="modal-title">Editar</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <label>Username</label>
+      <input [(ngModel)] = 'username' type="text" class="form-control" placeholder="Escribir Aqui">
+      <label>Email</label>
+      <input [(ngModel)] = 'email' type="text" class="form-control" placeholder="Escribir Aqui">
+      <label>Password</label>
+      <input [(ngModel)] = 'password' type="text" class="form-control"placeholder="Escribir Aqui">
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="c('Close click'); updateUsuario(username, email, password)">Confirmar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>
+    
+<!-- modal Eliminar-->
+<ng-template #modalDelete let-c="close" let-d="dismiss">
+  <div class="modal-header" >
+  <h4 class="modal-title">Eliminar</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+  <label>¿Esta seguro que quiere eliminar el siguiente registro?</label>
+  <label>ID del Usuario</label>
+  <p>{{idUsuario}}</p>
+  <label>Username</label>
+  <p>{{username}}</p>
+  <label>Email</label>
+  <p>{{email}}</p> 
+  <label>Password</label>
+  <p>{{password}}</p> 
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="c('Close click'); deleteUsuario()">Si</button>
+  <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">No</button>
+  </div>
+</ng-template>
+
+<!-- modal Detalles-->
+<ng-template #modalDetails let-c="close" let-d="dismiss">
+  <div class="modal-header" >
+    <h4 class="modal-title">Detalles</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>ID del Usuario</label>
+    <p>{{idUsuario}}</p>
+    <label>Username</label>
+    <p>{{username}}</p>
+    <label>Email</label>
+    <p>{{email}}</p>
+    <label>Password</label>
+    <p>{{password}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
